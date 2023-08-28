@@ -73,29 +73,6 @@ class ApiCallFilosofosApeironCall {
       );
 }
 
-class ChatquestionHeyHowAreYouCall {
-  static Future<ApiCallResponse> call() {
-    final body = '''
-{"question": "Hey, how are you?"}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Chatquestion Hey how are you',
-      apiUrl:
-          'https://creadordebots.apeiron.bio/api/v1/prediction/2a6bcfb9-7fc2-486c-8f06-f8b9649c2916',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      params: {},
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: true,
-      cache: false,
-    );
-  }
-}
-
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -57,7 +57,7 @@ class _FilosofosListComponentWidgetState
               pagingController: _model.setListViewController(
                 (nextPageMarker) => ApiCallFilosofosApeironCall.call(
                   page: 1,
-                  perPage: 5,
+                  perPage: 10,
                   offset: nextPageMarker.numItems,
                 ),
               ),
@@ -164,7 +164,7 @@ class _FilosofosListComponentWidgetState
                                     child: Image.network(
                                       getJsonField(
                                         filosofosListItem,
-                                        r'''$.jetpack_featured_media_url''',
+                                        r'''$.yoast_head_json.og_image[:].url''',
                                       ),
                                       width: 54.0,
                                       height: 54.0,

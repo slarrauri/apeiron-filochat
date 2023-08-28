@@ -1,24 +1,20 @@
 // ignore_for_file: unnecessary_getters_setters
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class CurrentChatBotStruct extends FFFirebaseStruct {
+class CurrentChatBotStruct extends BaseStruct {
   CurrentChatBotStruct({
     String? filosofoId,
     String? filosofoName,
     String? filosofoChatBotUrl,
     String? filosofoImage,
-    FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _filosofoId = filosofoId,
         _filosofoName = filosofoName,
         _filosofoChatBotUrl = filosofoChatBotUrl,
-        _filosofoImage = filosofoImage,
-        super(firestoreUtilData);
+        _filosofoImage = filosofoImage;
 
   // "filosofoId" field.
   String? _filosofoId;
@@ -128,84 +124,10 @@ CurrentChatBotStruct createCurrentChatBotStruct({
   String? filosofoName,
   String? filosofoChatBotUrl,
   String? filosofoImage,
-  Map<String, dynamic> fieldValues = const {},
-  bool clearUnsetFields = true,
-  bool create = false,
-  bool delete = false,
 }) =>
     CurrentChatBotStruct(
       filosofoId: filosofoId,
       filosofoName: filosofoName,
       filosofoChatBotUrl: filosofoChatBotUrl,
       filosofoImage: filosofoImage,
-      firestoreUtilData: FirestoreUtilData(
-        clearUnsetFields: clearUnsetFields,
-        create: create,
-        delete: delete,
-        fieldValues: fieldValues,
-      ),
     );
-
-CurrentChatBotStruct? updateCurrentChatBotStruct(
-  CurrentChatBotStruct? currentChatBot, {
-  bool clearUnsetFields = true,
-  bool create = false,
-}) =>
-    currentChatBot
-      ?..firestoreUtilData = FirestoreUtilData(
-        clearUnsetFields: clearUnsetFields,
-        create: create,
-      );
-
-void addCurrentChatBotStructData(
-  Map<String, dynamic> firestoreData,
-  CurrentChatBotStruct? currentChatBot,
-  String fieldName, [
-  bool forFieldValue = false,
-]) {
-  firestoreData.remove(fieldName);
-  if (currentChatBot == null) {
-    return;
-  }
-  if (currentChatBot.firestoreUtilData.delete) {
-    firestoreData[fieldName] = FieldValue.delete();
-    return;
-  }
-  final clearFields =
-      !forFieldValue && currentChatBot.firestoreUtilData.clearUnsetFields;
-  if (clearFields) {
-    firestoreData[fieldName] = <String, dynamic>{};
-  }
-  final currentChatBotData =
-      getCurrentChatBotFirestoreData(currentChatBot, forFieldValue);
-  final nestedData =
-      currentChatBotData.map((k, v) => MapEntry('$fieldName.$k', v));
-
-  final mergeFields = currentChatBot.firestoreUtilData.create || clearFields;
-  firestoreData
-      .addAll(mergeFields ? mergeNestedFields(nestedData) : nestedData);
-}
-
-Map<String, dynamic> getCurrentChatBotFirestoreData(
-  CurrentChatBotStruct? currentChatBot, [
-  bool forFieldValue = false,
-]) {
-  if (currentChatBot == null) {
-    return {};
-  }
-  final firestoreData = mapToFirestore(currentChatBot.toMap());
-
-  // Add any Firestore field values
-  currentChatBot.firestoreUtilData.fieldValues
-      .forEach((k, v) => firestoreData[k] = v);
-
-  return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;
-}
-
-List<Map<String, dynamic>> getCurrentChatBotListFirestoreData(
-  List<CurrentChatBotStruct>? currentChatBots,
-) =>
-    currentChatBots
-        ?.map((e) => getCurrentChatBotFirestoreData(e, true))
-        .toList() ??
-    [];
